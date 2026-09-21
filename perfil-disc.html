@@ -246,6 +246,10 @@ table.summary td.num{font-family:"IBM Plex Mono";text-align:center;font-variant-
 table.summary .fk{font-family:"Sora";font-weight:800;display:inline-grid;place-items:center;width:23px;height:23px;border-radius:7px;color:#fff;font-size:12px}
 .summary .d .fk{background:var(--d)}.summary .i .fk{background:var(--i)}.summary .s .fk{background:var(--s)}.summary .c .fk{background:var(--c)}
 
+.save-status{margin:0 4px 16px;padding:12px 15px;border-radius:12px;font-size:13.5px;font-weight:600;border:1px solid var(--line);display:flex;align-items:center;gap:9px}
+.save-status.sending{background:var(--surface-2);color:var(--ink-2)}
+.save-status.ok{background:color-mix(in srgb,var(--s) 15%,var(--surface));border-color:color-mix(in srgb,var(--s) 42%,var(--line));color:var(--s)}
+.save-status.off{background:var(--surface-3);border-color:var(--line-2);color:var(--ink-2)}
 .res-actions{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:11px 19px;border-radius:99px;font-size:13.5px;font-weight:600;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:60}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(-4px)}
@@ -345,6 +349,7 @@ table.summary .fk{font-family:"Sora";font-weight:800;display:inline-grid;place-i
 <section id="screen-result" hidden>
   <div class="wrap">
     <div class="eyebrow" style="margin-bottom:13px">Resultado da avaliação</div>
+    <div id="save-status" class="save-status" hidden></div>
     <div class="card res-head">
       <div class="who">
         <h2 id="r-nome">—</h2>
@@ -566,6 +571,19 @@ function finish(){
       '<td class="num">'+(r.obs[f]>0?"+":"")+r.obs[f]+'</td><td class="num">'+levelOf(r.obs[f])+'</td>';
     tb.appendChild(tr);
   });
+
+  const payload={nome:nome,cargo:cargo,entrevistador:ent,data:data,primary:primary,secondary:secondary,
+    more:r.more,less:r.less,nat:r.nat,ada:r.ada,obs:r.obs,
+    nivel:{D:levelOf(r.obs.D),I:levelOf(r.obs.I),S:levelOf(r.obs.S),C:levelOf(r.obs.C)},
+    respostas:answers.map((a,i)=>({bloco:i+1,mais:a.more,menos:a.less}))};
+  sendToBackend(payload);
+}
+function sendToBackend(payload){
+  const el=$("save-status"); if(!window.__discSave) return;
+  el.hidden=false; el.className="save-status sending"; el.textContent="Enviando resposta ao painel…";
+  window.__discSave(payload)
+    .then(()=>{ el.className="save-status ok"; el.textContent="✓ Resposta registrada no painel de resultados."; })
+    .catch(e=>{ el.className="save-status off"; el.textContent="Não foi possível enviar agora — "+((e&&e.message)||"verifique a configuração."); });
 }
 
 function restart(){
@@ -601,6 +619,39 @@ function copySummary(){
 }
 
 setToday();
+</script>
+
+
+<script type="module">
+  // ====== SDK Firebase (não altere as URLs) ======
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+  /* =========================================================
+     COLE AQUI a configuração do SEU projeto Firebase.
+     (Console Firebase > Configurações do projeto > Seus apps > Web)
+     Use EXATAMENTE a mesma config no dashboard.
+     ========================================================= */
+  const FIREBASE_CONFIG = {
+    apiKey: "AIzaSyD__yJ_2p2hVpKo-yaevYhiLLfc9uCT1ls",
+    authDomain: "disc--ativa.firebaseapp.com",
+    projectId: "disc--ativa",
+    storageBucket: "disc--ativa.firebasestorage.app",
+    messagingSenderId: "712589915377",
+    appId: "1:712589915377:web:1ba3c171ee8982b2572550"
+  };
+  const COLECAO = "respostas_disc";   // precisa ser igual no dashboard
+  /* ========================================================= */
+
+  const ok = FIREBASE_CONFIG.apiKey && FIREBASE_CONFIG.apiKey !== "COLE_AQUI";
+  let db = null;
+  if (ok) { try { db = getFirestore(initializeApp(FIREBASE_CONFIG)); } catch (e) { console.error(e); } }
+  else { console.warn("Firebase ainda não configurado: as respostas não serão salvas."); }
+
+  window.__discSave = async (payload) => {
+    if (!ok || !db) throw new Error("Firebase não configurado neste arquivo.");
+    await addDoc(collection(db, COLECAO), { ...payload, criadoEm: serverTimestamp() });
+  };
 </script>
 
 </body>
