@@ -260,8 +260,10 @@ table.summary .fk{font-family:"Sora";font-weight:800;display:inline-grid;place-i
   .pick{width:44px}
 }
 @media print{
+  @page{margin:0}
   .topbar,.res-actions,.note{display:none!important}
   body{background:#fff;color:#000}
+  #screen-result{padding:15mm 13mm!important}
   .card{box-shadow:none;border-color:#ccc;background:#fff}
   .charts{grid-template-columns:1fr 1fr 1fr}
   #screen-intro,#screen-quiz{display:none!important}
@@ -558,11 +560,6 @@ function finish(){
     }
     card.innerHTML=html; interp.appendChild(card);
   });
-  const qbox=document.createElement("div"); qbox.className="qbox";
-  const qs=[...PROFILE[primary].perguntas, PROFILE[secondary].perguntas[0]];
-  qbox.innerHTML='<div class="h">Perguntas sugeridas para esta entrevista</div><ol>'+qs.map(q=>"<li>"+q+"</li>").join("")+'</ol>';
-  interp.appendChild(qbox);
-
   const tb=$("r-table").querySelector("tbody"); tb.innerHTML="";
   ["D","I","S","C"].forEach(f=>{
     const tr=document.createElement("tr"); tr.className=f.toLowerCase();

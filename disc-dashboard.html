@@ -53,43 +53,35 @@ h1,h2,h3,h4{font-family:"Sora",system-ui,sans-serif;margin:0;letter-spacing:-.01
 button{font-family:inherit;cursor:pointer}input,select{font-family:inherit}
 [hidden]{display:none!important}
 .wrap{max-width:1040px;margin:0 auto;padding:0 16px}
-.eyebrow{font-family:"IBM Plex Mono";font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
 .mark{width:32px;height:32px;border-radius:9px;display:grid;grid-template-columns:1fr 1fr;gap:2.5px;padding:5px;background:linear-gradient(140deg,var(--accent),var(--accent-2));box-shadow:var(--shadow-accent)}
 .mark i{border-radius:2px;background:rgba(255,255,255,.92)}.mark i:nth-child(2),.mark i:nth-child(3){background:rgba(255,255,255,.6)}
 .card{background:linear-gradient(180deg,var(--card-top),transparent 120px),var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
 .ghost{border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2);border-radius:10px;padding:8px 13px;font-size:13px;font-weight:600;display:inline-flex;gap:6px;align-items:center;transition:.15s}
 .ghost:hover{color:var(--ink);border-color:var(--accent)}
-.cta{border:none;color:#fff;border-radius:11px;padding:12px 20px;font-size:14.5px;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:var(--shadow-accent);display:inline-flex;align-items:center;gap:8px;transition:.12s}
-.cta:hover{filter:brightness(1.07)}.cta:disabled{opacity:.5;cursor:progress}
+.cta{border:none;color:#fff;border-radius:11px;padding:12px 20px;font-size:14.5px;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:var(--shadow-accent);display:inline-flex;align-items:center;gap:8px}
+.cta:hover{filter:brightness(1.07)}
 
-/* ---- login ---- */
-#login-screen{min-height:100vh;display:grid;place-items:center;padding:24px}
-.login-card{width:100%;max-width:380px;padding:30px 28px}
-.login-card .brand{display:flex;align-items:center;gap:11px;font-family:"Sora";font-weight:700;font-size:17px}
-.login-card h1{font-size:22px;font-weight:800;margin-top:20px}
-.login-card p{color:var(--ink-2);font-size:14px;margin:6px 0 22px}
-.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
-.field label{font-size:12px;font-weight:600;color:var(--ink-2)}
-.field input{border:1px solid var(--line-2);background:var(--surface-2);color:var(--ink);border-radius:11px;padding:12px 13px;font-size:14.5px;transition:.15s}
-.field input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 24%,transparent)}
-.login-card .cta{width:100%;justify-content:center;margin-top:6px}
+/* gate */
+#gate{min-height:100vh;display:grid;place-items:center;padding:24px}
+.login-card{width:100%;max-width:390px;padding:30px 28px;text-align:center}
+.login-card .brand{display:flex;align-items:center;justify-content:center;gap:11px;font-family:"Sora";font-weight:700;font-size:17px}
 .err{font-size:13px;color:#d05663;margin-top:12px;min-height:18px;font-weight:600}
+.login-card p{color:var(--ink-2);font-size:14px;margin:6px 0 0}
 
-/* ---- header ---- */
+/* header */
 .topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:saturate(1.5) blur(14px);-webkit-backdrop-filter:saturate(1.5) blur(14px);border-bottom:1px solid var(--line)}
 .topbar .row{max-width:1040px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px}
 .topbar .brand{display:flex;align-items:center;gap:10px;font-family:"Sora";font-weight:700;font-size:15.5px}
 .spacer{flex:1}
 .who-badge{font-size:12.5px;color:var(--ink-2);font-weight:500;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
-/* ---- dashboard ---- */
+/* dashboard */
 #dash{padding:26px 0 60px}
 .page-title{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
 .page-title h2{font-size:24px;font-weight:800}
 .page-title .live{font-size:11px;font-family:"IBM Plex Mono";text-transform:uppercase;letter-spacing:.1em;color:var(--s);display:inline-flex;align-items:center;gap:6px}
 .page-title .live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--s);box-shadow:0 0 8px var(--s)}
 .sub{color:var(--ink-2);font-size:14px;margin:2px 0 22px}
-
 .kpis{display:grid;grid-template-columns:1.1fr 2fr;gap:14px}
 .kpi-total{padding:20px 22px;display:flex;flex-direction:column;justify-content:center}
 .kpi-total .n{font-family:"Sora";font-size:44px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
@@ -105,13 +97,11 @@ button{font-family:inherit;cursor:pointer}input,select{font-family:inherit}
 .drow .track>i{display:block;height:100%;border-radius:5px;transition:width .4s}
 .drow.d .track>i{background:var(--d)}.drow.i .track>i{background:var(--i)}.drow.s .track>i{background:var(--s)}.drow.c .track>i{background:var(--c)}
 .drow .v{font-family:"IBM Plex Mono";font-weight:600;text-align:right;color:var(--ink-2)}
-
 .toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:26px 0 14px}
 .toolbar input,.toolbar select{border:1px solid var(--line-2);background:var(--surface);color:var(--ink);border-radius:10px;padding:9px 12px;font-size:13.5px}
 .toolbar input{flex:1;min-width:170px}
 .toolbar input:focus,.toolbar select:focus{outline:none;border-color:var(--accent)}
 .count-tag{font-size:12.5px;color:var(--ink-3);font-family:"IBM Plex Mono"}
-
 .list-card{overflow:hidden}
 table.tbl{width:100%;border-collapse:collapse;font-size:13.5px}
 table.tbl th,table.tbl td{text-align:left;padding:13px 16px;border-bottom:1px solid var(--line)}
@@ -129,9 +119,9 @@ table.tbl tbody tr:hover{background:var(--surface-2)}
 .empty{padding:48px 24px;text-align:center;color:var(--ink-3)}
 .empty h3{font-size:16px;color:var(--ink-2);font-weight:700;margin-bottom:6px}
 
-/* ---- modal ---- */
+/* modal */
 .overlay{position:fixed;inset:0;background:color-mix(in srgb,var(--bg) 45%,rgba(0,0,0,.6));backdrop-filter:blur(4px);z-index:50;display:grid;place-items:start center;padding:28px 16px;overflow:auto}
-.modal{width:100%;max-width:760px;padding:24px}
+.modal{width:100%;max-width:780px;padding:24px}
 .modal .mhead{display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap}
 .modal .mhead .who{flex:1;min-width:180px}
 .modal .mhead h3{font-size:21px;font-weight:800}
@@ -141,7 +131,16 @@ table.tbl tbody tr:hover{background:var(--surface-2)}
 .badge-primary .lbl{font-family:"IBM Plex Mono";font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:.92}
 .badge-primary .let{font-family:"Sora";font-size:32px;font-weight:800;line-height:1}
 .badge-primary .nm{font-weight:700;font-size:14px}
-.charts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:20px}
+.mtitle{margin:24px 2px 12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.mtitle h4{font-size:15px;font-weight:700}
+.mtitle span{font-size:12px;color:var(--ink-3)}
+.card.pad{padding:16px}
+.synth{padding:18px;margin-top:18px}
+.synth-tag{display:inline-block;font-family:"IBM Plex Mono";font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent);border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));padding:4px 11px;border-radius:99px}
+.synth p{margin:12px 0 0;font-size:14.5px;color:var(--ink-2)}
+.synth .muted2{font-family:"IBM Plex Mono";font-size:12px;color:var(--ink-3);margin-top:9px;letter-spacing:.02em}
+.synth .disc-note{font-size:12.5px;color:var(--ink-3);border-left:2px solid var(--accent);padding-left:11px;margin-top:13px}
+.charts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:14px}
 .chart{padding:14px}.chart h4{font-size:12.5px;font-weight:700}.chart .csub{font-size:10.5px;color:var(--ink-3);margin-top:1px;min-height:26px;line-height:1.3}
 .chart.hi{border-color:color-mix(in srgb,var(--accent) 55%,var(--line))}
 .brows{margin-top:12px;display:flex;flex-direction:column;gap:9px}
@@ -151,26 +150,49 @@ table.tbl tbody tr:hover{background:var(--surface-2)}
 .brow .btrack>i{position:absolute;top:0;bottom:0;border-radius:5px}
 .brow .btrack.center::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--line-2)}
 .brow .bv{font-family:"IBM Plex Mono";font-size:12px;font-weight:600;text-align:right;color:var(--ink-2)}
-.modal .mfoot{margin-top:22px;display:flex;justify-content:flex-end}
-
-@media (max-width:720px){.kpis{grid-template-columns:1fr}.charts{grid-template-columns:1fr}
-  table.tbl .hide-sm{display:none}}
+.stack{display:flex;flex-direction:column;gap:12px}
+.pcard{padding:17px;border-left:4px solid var(--line)}
+.pcard.d{border-left-color:var(--d)}.pcard.i{border-left-color:var(--i)}.pcard.s{border-left-color:var(--s)}.pcard.c{border-left-color:var(--c)}
+.pcard .ph{display:flex;align-items:center;gap:10px}
+.pcard .ph .sq{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;color:#fff;font-family:"Sora";font-weight:800}
+.pcard.d .sq{background:var(--d)}.pcard.i .sq{background:var(--i)}.pcard.s .sq{background:var(--s)}.pcard.c .sq{background:var(--c)}
+.pcard .ph h4{font-size:15px;font-weight:700}
+.pcard .ph .tag{margin-left:auto;font-size:10px;font-family:"IBM Plex Mono";text-transform:uppercase;letter-spacing:.09em;color:var(--ink-3);border:1px solid var(--line-2);border-radius:99px;padding:3px 9px}
+.pcard p{margin:11px 0 0;font-size:13.8px;color:var(--ink-2)}
+.pcard .twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+.pcard .twocol .h{font-size:11px;font-weight:700;font-family:"IBM Plex Mono";text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3);margin-bottom:5px}
+.pcard .twocol ul{margin:0;padding-left:16px;font-size:13px;color:var(--ink-2)}
+.pcard .twocol ul li{margin:3px 0}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dtile{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:15px 16px}
+.dtile .dh{font-size:11.5px;font-weight:700;font-family:"IBM Plex Mono";text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:6px}
+.dtile p{margin:0;font-size:13.4px;color:var(--ink-2)}
+.mtbl{width:100%;border-collapse:collapse;font-size:13px}
+.mtbl th,.mtbl td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+.mtbl th{font-family:"IBM Plex Mono";font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.mtbl td.num{font-family:"IBM Plex Mono";text-align:center}
+.mtbl .fk{font-family:"Sora";font-weight:800;display:inline-grid;place-items:center;width:20px;height:20px;border-radius:5px;color:#fff;font-size:11px;margin-right:4px}
+.mtbl .d .fk{background:var(--d)}.mtbl .i .fk{background:var(--i)}.mtbl .s .fk{background:var(--s)}.mtbl .c .fk{background:var(--c)}
+.qbox{margin-top:18px;background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 8%,var(--surface)),var(--surface));border:1px solid color-mix(in srgb,var(--accent) 28%,var(--line));border-radius:12px;padding:16px 18px}
+.qbox .qh{font-size:11.5px;font-weight:700;font-family:"IBM Plex Mono";text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.qbox ol{margin:10px 0 0;padding-left:18px;font-size:14px;color:var(--ink)}
+.qbox ol li{margin:6px 0}
+.modal .mfoot{margin-top:24px;display:flex;justify-content:flex-end}
+@media (max-width:720px){.kpis,.charts,.dgrid{grid-template-columns:1fr}.pcard .twocol{grid-template-columns:1fr}table.tbl .hide-sm{display:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 
-<!-- ===== GATE (acesso livre temporário, sem senha) ===== -->
-<section id="gate" style="min-height:100vh;display:grid;place-items:center;padding:24px">
-  <div class="card login-card" style="text-align:center">
-    <div class="brand" style="justify-content:center"><span class="mark"><i></i><i></i><i></i><i></i></span> Painel DISC</div>
+<section id="gate">
+  <div class="card login-card">
+    <div class="brand"><span class="mark"><i></i><i></i><i></i><i></i></span> Painel DISC</div>
     <h1 id="gate-title" style="font-size:20px;font-weight:800;margin-top:18px">Conectando…</h1>
     <p id="gate-msg">Carregando as respostas.</p>
     <div class="err" id="gate-err"></div>
   </div>
 </section>
 
-<!-- ===== DASHBOARD ===== -->
 <div id="app" hidden>
   <div class="topbar">
     <div class="row">
@@ -184,7 +206,7 @@ table.tbl tbody tr:hover{background:var(--surface-2)}
   <section id="dash">
     <div class="wrap">
       <div class="page-title"><h2>Respostas recebidas</h2><span class="live">ao vivo</span></div>
-      <p class="sub">Cada avaliação concluída aparece aqui automaticamente.</p>
+      <p class="sub">Cada avaliação concluída aparece aqui automaticamente. Clique em “Ver” para o relatório completo do candidato.</p>
 
       <div class="kpis">
         <div class="card kpi-total"><span class="n" id="k-total">0</span><span class="l">avaliações registradas</span></div>
@@ -228,9 +250,7 @@ import { getAuth, signInAnonymously, onAuthStateChanged }
 import { getFirestore, collection, query, orderBy, onSnapshot, deleteDoc, doc }
   from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
-/* =========================================================
-   COLE AQUI a MESMA config Firebase usada no formulário.
-   ========================================================= */
+/* ===== MESMA config Firebase do formulário ===== */
 const FIREBASE_CONFIG = {
   apiKey: "AIzaSyD__yJ_2p2hVpKo-yaevYhiLLfc9uCTlls",
   authDomain: "disc--ativa.firebaseapp.com",
@@ -240,7 +260,7 @@ const FIREBASE_CONFIG = {
   appId: "1:712589915377:web:1ba3c171ee8982b2572550"
 };
 const COLECAO = "respostas_disc";
-/* ========================================================= */
+/* =============================================== */
 
 const app = initializeApp(FIREBASE_CONFIG);
 const auth = getAuth(app);
@@ -250,12 +270,91 @@ const FNAME={D:"Dominância",I:"Influência",S:"Estabilidade",C:"Conformidade"};
 const $=id=>document.getElementById(id);
 let DATA=[], unsub=null;
 
+/* ============ BASE DE INTERPRETAÇÃO ============ */
+const QPERGUNTAS={
+ D:["Conte uma situação em que você teve que decidir rápido com informação incompleta.","Como você reage quando um projeto sai do seu controle?","Descreva um objetivo ambicioso que você buscou e o que fez para alcançá-lo."],
+ I:["Como você conquistou a confiança de um cliente ou colega difícil?","Conte um projeto em que precisou de disciplina e acompanhamento de detalhes.","Como você mantém o ritmo quando o trabalho é repetitivo?"],
+ S:["Conte uma mudança grande no trabalho e como você se adaptou.","Como você age quando discorda da decisão do grupo?","Descreva como você apoia um colega em dificuldade."],
+ C:["Descreva um processo que você melhorou para reduzir erros.","Como você decide quando já tem análise suficiente para agir?","Conte uma vez em que teve que trabalhar com regras ou requisitos rígidos."]
+};
+
+const INTEL={
+ D:{ essencia:"foco em resultados, controle e ação rápida",
+   alto:"Tende a assumir o comando, decidir rápido e ir direto ao ponto. Gosta de desafios, autonomia e metas claras, e se incomoda com lentidão, indecisão e microgerenciamento. Costuma medir o próprio valor pela entrega de resultados.",
+   medio:"Equilibra iniciativa e ponderação: assume o controle quando é preciso, mas também aceita dividir decisões e ouvir antes de agir.",
+   baixo:"Prefere colaborar a competir e evita se impor. Costuma ceder o comando, buscar consenso e agir com mais cautela antes de decidir — o que traz harmonia, mas pode atrasar decisões difíceis.",
+   forcas:["Toma decisões e assume responsabilidade","Foco em metas e senso de urgência","Enfrenta problemas e conflitos de frente","Mantém-se firme sob pressão"],
+   atencao:["Pode parecer impaciente ou ríspido","Tende a atropelar processos e detalhes","Escuta menos quando está sob pressão","Delega pouco por querer o controle"],
+   comunicar:"Seja direto e objetivo. Vá ao ponto, foque em resultados e no “o quê”; deixe o “como” com ela. Evite rodeios, excesso de detalhes e conversas longas sem conclusão.",
+   motiva:"Desafios, autonomia, poder de decisão, metas ambiciosas e reconhecimento claro por resultados alcançados.",
+   liderar:"Dê autonomia e metas claras, delegue responsabilidade real e cobre resultado, não passo a passo. Ofereça desafios crescentes e feedback direto — ela respeita firmeza.",
+   pressao:"Sob pressão pode ficar impaciente, autoritária ou atropelar pessoas e etapas. Ajude a canalizar a energia e a considerar o impacto das decisões sobre a equipe.",
+   evitar:"Evite controlar cada passo, arrastar decisões e reuniões sem desfecho. Não leve a franqueza dela para o lado pessoal.",
+   ambiente:"Ambientes dinâmicos, com liberdade de ação, metas desafiadoras, ritmo acelerado e pouca burocracia." },
+ I:{ essencia:"foco em pessoas, comunicação e entusiasmo",
+   alto:"Comunicativa, otimista e persuasiva. Conquista as pessoas pela relação, gosta de reconhecimento e de ambientes sociais, e traz energia ao time. Pode se dispersar em detalhes, prazos e tarefas solitárias.",
+   medio:"Sociável na medida certa: conecta-se com as pessoas sem depender só disso e equilibra relação com foco na tarefa.",
+   baixo:"Mais reservada e objetiva nas relações. Prefere fatos a entusiasmo, fala menos e pode parecer distante, mas costuma ser mais concentrada e menos dependente de aprovação.",
+   forcas:["Comunica e influencia com naturalidade","Cria bom clima e engaja pessoas","Otimista e aberta a novidades","Boa em relacionamento, rede e vendas"],
+   atencao:["Pode dispersar-se em detalhes e prazos","Excesso de otimismo nas estimativas","Precisa de reconhecimento para manter energia","Dificuldade com tarefas solitárias e repetitivas"],
+   comunicar:"Seja amigável e caloroso, dê espaço para ela falar e reconheça o esforço, de preferência em público. Use exemplos, histórias e um tom positivo; evite frieza e excesso de crítica.",
+   motiva:"Reconhecimento, interação social, novidade, variedade e liberdade para se expressar e trabalhar com pessoas.",
+   liderar:"Dê visibilidade e elogios sinceros e envolva-a em atividades de grupo. Ajude a manter foco em prazos e detalhes com metas curtas e acompanhamento leve e frequente.",
+   pressao:"Sob pressão pode falar demais, prometer além da conta ou fugir do conflito. Traga-a de volta a fatos, prioridades e prazos concretos.",
+   evitar:"Evite isolá-la em tarefas solitárias e repetitivas sem contato humano, e críticas duras feitas em público.",
+   ambiente:"Ambientes colaborativos, com interação, reconhecimento, variedade e clima leve." },
+ S:{ essencia:"foco em cooperação, constância e harmonia",
+   alto:"Paciente, leal e constante. Valoriza estabilidade, rotina e boas relações, e é o apoio confiável do time. Resiste a mudanças bruscas e tende a evitar conflito, o que pode fazê-la segurar opiniões.",
+   medio:"Adapta-se a mudanças com algum tempo e equilibra estabilidade com flexibilidade.",
+   baixo:"Gosta de ritmo rápido e variedade e se entedia com rotina. Lida bem com mudança e multitarefa, mas pode faltar constância e acabamento.",
+   forcas:["Confiável e consistente ao longo do tempo","Ótima em colaboração e suporte","Ouve com paciência e mantém a calma","Sustenta rotinas e processos com regularidade"],
+   atencao:["Resistência a mudanças bruscas","Evita conflito e pode segurar opiniões","Dificuldade em dizer não e priorizar","Ritmo mais cauteloso sob pressão de tempo"],
+   comunicar:"Seja gentil, paciente e sincero. Explique o porquê das coisas e das mudanças com antecedência e transmita segurança. Evite pressa, surpresas e confronto direto.",
+   motiva:"Segurança, estabilidade, rotina previsível, trabalho em equipe e a sensação de pertencer e ser útil.",
+   liderar:"Dê previsibilidade e apoio, comunique mudanças com antecedência e explique o impacto. Reconheça a confiabilidade e crie um espaço seguro para ela discordar e opinar.",
+   pressao:"Sob pressão pode travar diante da mudança, segurar opiniões e sobrecarregar-se por não saber dizer não. Ajude a priorizar e a expor divergências sem medo.",
+   evitar:"Evite mudanças repentinas sem aviso, conflito aberto e pressão por decisões instantâneas.",
+   ambiente:"Ambientes estáveis, colaborativos, com rotina clara e relações de confiança." },
+ C:{ essencia:"foco em qualidade, análise e procedimentos",
+   alto:"Precisa, analítica e cautelosa. Busca fazer certo, segue normas e fundamenta decisões em dados. Preza qualidade e detalhe, mas pode ser perfeccionista, crítica e lenta para decidir sob incerteza.",
+   medio:"Cuida da qualidade sem travar e equilibra análise com agilidade.",
+   baixo:"Prática e flexível com regras: decide rápido mesmo sem todos os dados. Ganha velocidade, mas pode negligenciar detalhes, normas e documentação.",
+   forcas:["Alto padrão de qualidade e precisão","Analisa riscos e detalhes antes de agir","Segue normas, processos e documentação","Decisões fundamentadas em fatos"],
+   atencao:["Pode ser perfeccionista e lenta para decidir","Excesso de crítica e cautela","Desconforto com ambiguidade e improviso","Mais reservada nas relações"],
+   comunicar:"Seja claro, lógico e baseado em fatos. Traga dados, critérios e detalhes; evite pressão emocional e generalizações. Dê tempo para ela analisar antes de responder.",
+   motiva:"Qualidade, precisão, clareza de regras e critérios, tempo para fazer bem-feito e reconhecimento pela competência técnica.",
+   liderar:"Forneça critérios claros, dados e prazos realistas. Valorize a qualidade do trabalho, evite mudanças de última hora e faça a cobrança de forma objetiva, com fatos e não emoção.",
+   pressao:"Sob pressão pode paralisar por excesso de análise, tornar-se excessivamente crítica ou rígida. Ajude a definir o “bom o suficiente” e a decidir com dados parciais.",
+   evitar:"Evite ambiguidade, improviso constante, prazos irreais e críticas sem fundamento.",
+   ambiente:"Ambientes organizados, com processos claros, qualidade valorizada e espaço para análise." }
+};
+
+const COMBOS={
+ DI:{rotulo:"Pioneiro / Realizador",sintese:"Une foco em resultados com carisma: assume o comando e mobiliza pessoas rumo à meta. É ousado e persuasivo, mas precisa cuidar de detalhes, prazos e da escuta."},
+ DS:{rotulo:"Determinado Persistente",sintese:"Combina drive com constância: busca resultados de forma firme, porém mais estável e leal. Equilibra pressão e paciência, e sustenta o esforço ao longo do tempo."},
+ DC:{rotulo:"Realizador Analítico",sintese:"Resultados com rigor: é decidida, mas exigente com qualidade e critérios. Direta e crítica, tende ao controle e à alta cobrança — de si e dos outros."},
+ ID:{rotulo:"Persuasor / Motivador",sintese:"Influência com energia de realização: engaja e impulsiona pessoas rumo a metas. Comunicativa e ativa, precisa cuidar de foco, detalhes e prazos."},
+ IS:{rotulo:"Conselheiro / Facilitador",sintese:"Relacionamento e apoio: calorosa, colaborativa e boa em criar harmonia. Excelente com pessoas, mas pode evitar o confronto e adiar decisões difíceis."},
+ IC:{rotulo:"Comunicador Preciso",sintese:"Une comunicação com cuidado: sociável, mas atenta a fatos e qualidade. Equilibra relação e análise, o que ajuda em papéis que exigem tato e critério."},
+ SD:{rotulo:"Estável Determinado",sintese:"Constância com iniciativa: confiável e paciente, mas capaz de assumir o comando quando necessário. Traz firmeza sem perder a estabilidade."},
+ SI:{rotulo:"Apoiador / Harmonizador",sintese:"Suporte e simpatia: leal, paciente e sociável, sustenta o time e as relações. Cria um clima de confiança, mas tende a evitar conflito."},
+ SC:{rotulo:"Coordenador / Especialista",sintese:"Estabilidade com método: confiável, organizada e cuidadosa, é ótima em processos e consistência. Resiste a mudanças bruscas e prefere o previsível."},
+ CD:{rotulo:"Perfeccionista de Resultado",sintese:"Qualidade com foco em meta: analítica e exigente, decide com firmeza quando tem dados. Crítica e cautelosa, cobra alto padrão."},
+ CI:{rotulo:"Analista Comunicador",sintese:"Precisão com relação: cuidadosa e lógica, mas sociável. Combina dados e diplomacia, útil onde é preciso explicar o técnico com tato."},
+ CS:{rotulo:"Técnico / Metódico",sintese:"Qualidade e constância: precisa, organizada e estável, é excelente em rotina, padrões e acabamento. Evita risco e mudança repentina."}
+};
+
+function levelOf(v){ v=v||0;
+  if(v>=6)return"Muito alto"; if(v>=3)return"Alto"; if(v>=1)return"Moderado";
+  if(v<=-6)return"Muito baixo"; if(v<=-3)return"Baixo"; if(v<=-1)return"Reduzido"; return"Equilibrado";
+}
+function lvlObs(v){ v=v||0; return v>=3?"alto":(v<=-3?"baixo":"medio"); }
+function niv(v){ const l=lvlObs(v); return l==="alto"?"alto":l==="baixo"?"baixo":"médio"; }
+
 /* ---------- acesso livre: login anônimo automático (sem e-mail/senha) ---------- */
 onAuthStateChanged(auth, user=>{
-  if(user){
-    $("gate").hidden=true; $("app").hidden=false;
-    listen();
-  }else{
+  if(user){ $("gate").hidden=true; $("app").hidden=false; listen(); }
+  else{
     signInAnonymously(auth).catch(err=>{
       $("gate-title").textContent="Não foi possível conectar";
       $("gate-err").textContent = (err.code==="auth/operation-not-allowed"||err.code==="auth/admin-restricted-operation")
@@ -273,10 +372,9 @@ function listen(){
   }, err=>{ console.error(err); $("rows").innerHTML='<tr><td colspan="5" style="padding:24px;color:var(--ink-3)">Erro ao carregar: '+err.message+'</td></tr>'; });
 }
 
-/* ---------- render ---------- */
+/* ---------- render lista ---------- */
 $("q").addEventListener("input",render);
 $("fperfil").addEventListener("change",render);
-
 function filtered(){
   const q=$("q").value.trim().toLowerCase(), fp=$("fperfil").value;
   return DATA.filter(r=>{
@@ -288,16 +386,13 @@ function filtered(){
 function render(){
   const list=filtered();
   $("k-total").textContent=DATA.length;
-  // distribuição
   const cnt={D:0,I:0,S:0,C:0}; DATA.forEach(r=>{ if(cnt[r.primary]!=null)cnt[r.primary]++; });
   const max=Math.max(1,...Object.values(cnt));
   $("dist").innerHTML=["D","I","S","C"].map(f=>
     '<div class="drow '+f.toLowerCase()+'"><span class="k"><b>'+f+'</b>'+FNAME[f]+'</span>'+
     '<div class="track"><i style="width:'+Math.round(cnt[f]/max*100)+'%"></i></div>'+
     '<span class="v">'+cnt[f]+'</span></div>').join("");
-  // contagem
   $("count").textContent = list.length===DATA.length ? (DATA.length+" no total") : (list.length+" de "+DATA.length);
-  // tabela
   const tb=$("rows");
   if(!list.length){ tb.innerHTML=""; $("empty").hidden=false; $("empty").querySelector("h3").textContent = DATA.length? "Nenhum resultado para o filtro":"Nenhuma resposta ainda"; return; }
   $("empty").hidden=true;
@@ -315,7 +410,7 @@ function render(){
   tb.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>removeDoc(b.getAttribute("data-del")));
 }
 
-/* ---------- detalhe ---------- */
+/* ---------- relatório detalhado ---------- */
 function openDetail(id){
   const r=DATA.find(x=>x.id===id); if(!r)return;
   const pc=getColor(r.primary);
@@ -323,16 +418,22 @@ function openDetail(id){
   if(r.entrevistador)meta.push("<span><b>Entrevistador:</b> "+esc(r.entrevistador)+"</span>");
   if(r.data)meta.push("<span><b>Data:</b> "+esc(fmtDate(r.data))+"</span>");
   meta.push("<span><b>Recebido:</b> "+fmtWhen(r)+"</span>");
-  const root=$("modal-root");
-  root.innerHTML='<div class="overlay" id="ov"><div class="card modal">'+
+  $("modal-root").innerHTML='<div class="overlay" id="ov"><div class="card modal">'+
     '<div class="mhead"><div class="who"><h3>'+esc(r.nome||"—")+'</h3><div class="meta">'+meta.join("")+'</div></div>'+
     '<div class="badge-primary" style="background:linear-gradient(140deg,'+pc+',color-mix(in srgb,'+pc+' 60%,#0a1020));box-shadow:0 12px 30px color-mix(in srgb,'+pc+' 40%,transparent)">'+
       '<span class="lbl">Predominante</span><span class="let">'+(r.primary||"—")+'</span><span class="nm">'+(FNAME[r.primary]||"")+'</span></div></div>'+
+    secSintese(r)+
     '<div class="charts">'+
       chartSimple("Natural","instintivo",r.nat)+
       chartSimple("Adaptado","ao ambiente",r.ada)+
       chartCentered("Observável","síntese percebida",r.obs)+
     '</div>'+
+    secQuadro(r)+
+    secLeitura(r)+
+    secDicas(r)+
+    '<div class="mtitle" style="margin-bottom:0"><h4>Roteiro de perguntas</h4><span>para explorar na conversa</span></div>'+
+    qblock(r.primary,r.secondary)+
+    secConclusao(r)+
     '<div class="mfoot"><button class="ghost" id="mclose">Fechar</button></div></div></div>';
   $("ov").onclick=(e)=>{ if(e.target.id==="ov") close(); };
   $("mclose").onclick=close;
@@ -341,24 +442,75 @@ function openDetail(id){
 function close(){ $("modal-root").innerHTML=""; document.removeEventListener("keydown",escClose); }
 function escClose(e){ if(e.key==="Escape") close(); }
 
+function secSintese(r){
+  const key=(r.primary||"")+(r.secondary||"");
+  const c=COMBOS[key]||{rotulo:FNAME[r.primary]||"Perfil",sintese:(INTEL[r.primary]?"Perfil marcado por "+INTEL[r.primary].essencia+".":"")};
+  const niveis=["D","I","S","C"].map(f=>f+" "+niv(g(r.obs,f))).join(" · ");
+  return '<div class="card synth">'+
+    '<span class="synth-tag">Perfil '+(r.primary||"?")+"/"+(r.secondary||"?")+' · '+c.rotulo+'</span>'+
+    '<p>'+c.sintese+'</p>'+
+    '<p class="muted2">Intensidade observável — '+niveis+'</p></div>';
+}
+function secQuadro(r){
+  const rows=["D","I","S","C"].map(f=>'<tr class="'+f.toLowerCase()+'"><td><span class="fk">'+f+'</span>'+FNAME[f]+'</td>'+
+    '<td class="num">'+g(r.nat,f)+'</td><td class="num">'+g(r.ada,f)+'</td>'+
+    '<td class="num">'+(g(r.obs,f)>0?"+":"")+g(r.obs,f)+'</td><td class="num">'+levelOf(g(r.obs,f))+'</td></tr>').join("");
+  return '<div class="mtitle"><h4>Quadro-resumo</h4><span>pontuação nas três leituras</span></div>'+
+    '<div class="card pad"><table class="mtbl"><thead><tr><th>Fator</th><th>Natural</th><th>Adaptado</th><th>Observável</th><th>Nível</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
+}
+function secLeitura(r){
+  const order=["D","I","S","C"].sort((a,b)=>g(r.obs,b)-g(r.obs,a));
+  const cards=order.map(f=>{
+    const it=INTEL[f], lv=lvlObs(g(r.obs,f));
+    const txt = lv==="alto"?it.alto : lv==="baixo"?it.baixo : it.medio;
+    const tag = f===r.primary?"Predominante":f===r.secondary?"Secundário":("Nível "+niv(g(r.obs,f)));
+    const show = f===r.primary || f===r.secondary || lv!=="medio";
+    let h='<div class="card pcard '+f.toLowerCase()+'"><div class="ph"><span class="sq">'+f+'</span><h4>'+FNAME[f]+'</h4><span class="tag">'+tag+'</span></div><p>'+txt+'</p>';
+    if(show){ h+='<div class="twocol"><div><div class="h">Forças</div><ul>'+it.forcas.map(x=>"<li>"+x+"</li>").join("")+'</ul></div>'+
+      '<div><div class="h">Pontos de atenção</div><ul>'+it.atencao.map(x=>"<li>"+x+"</li>").join("")+'</ul></div></div>'; }
+    return h+'</div>';
+  }).join("");
+  return '<div class="mtitle"><h4>Leitura por fator</h4><span>o que cada dimensão indica neste candidato</span></div><div class="stack">'+cards+'</div>';
+}
+function secDicas(r){
+  const it=INTEL[r.primary]; if(!it) return "";
+  const blocos=[["Como se comunicar",it.comunicar],["O que o motiva",it.motiva],["Como liderar e desenvolver",it.liderar],
+    ["Sob pressão",it.pressao],["Atritos a evitar",it.evitar],["Ambiente ideal",it.ambiente]];
+  const cells=blocos.map(b=>'<div class="dtile"><div class="dh">'+b[0]+'</div><p>'+b[1]+'</p></div>').join("");
+  return '<div class="mtitle"><h4>Dicas comportamentais e de gestão</h4><span>como conduzir, integrar e desenvolver este perfil</span></div><div class="dgrid">'+cells+'</div>';
+}
+function secConclusao(r){
+  const p=INTEL[r.primary], s=INTEL[r.secondary];
+  const txt="Em síntese, este é um perfil que combina "+(p?p.essencia:"")+(s?" com "+s.essencia:"")+". "+
+    "Na entrevista, confirme os pontos fortes pedindo exemplos reais e explore os pontos de atenção com o roteiro de perguntas acima. "+
+    "Para integrar bem a pessoa, aplique as dicas de comunicação e o ambiente ideal indicados, e ajuste a gestão ao que a motiva. "+
+    "Compare o gráfico Adaptado (como ela se mostra) com o Natural (instinto): diferenças grandes sugerem que ela está se esforçando para se ajustar ao ambiente — vale conversar sobre isso.";
+  return '<div class="mtitle"><h4>Conclusão e recomendações</h4></div>'+
+    '<div class="card synth"><p>'+txt+'</p>'+
+    '<p class="disc-note">O DISC descreve estilo de comportamento, não capacidade técnica nem valor da pessoa. Use como apoio à decisão, sempre combinado com a entrevista, as referências e a avaliação prática.</p></div>';
+}
+
+/* ---------- gráficos ---------- */
 function chartSimple(title,sub,data){
   data=data||{D:0,I:0,S:0,C:0}; const max=Math.max(1,...Object.values(data));
-  const rows=["D","I","S","C"].map(f=>{
-    const v=data[f]||0, w=Math.round(v/max*100);
+  const rows=["D","I","S","C"].map(f=>{ const v=data[f]||0, w=Math.round(v/max*100);
     return '<div class="brow"><span class="bk" style="color:'+getColor(f)+'">'+f+'</span>'+
-      '<div class="btrack"><i style="left:0;width:'+w+'%;background:'+getColor(f)+'"></i></div><span class="bv">'+v+'</span></div>';
-  }).join("");
+      '<div class="btrack"><i style="left:0;width:'+w+'%;background:'+getColor(f)+'"></i></div><span class="bv">'+v+'</span></div>'; }).join("");
   return '<div class="card chart"><h4>'+title+'</h4><div class="csub">'+sub+'</div><div class="brows">'+rows+'</div></div>';
 }
 function chartCentered(title,sub,data){
   data=data||{D:0,I:0,S:0,C:0}; const max=Math.max(3,...Object.values(data).map(v=>Math.abs(v||0)));
-  const rows=["D","I","S","C"].map(f=>{
-    const v=data[f]||0, half=Math.abs(v)/max*50;
+  const rows=["D","I","S","C"].map(f=>{ const v=data[f]||0, half=Math.abs(v)/max*50;
     const st=v>=0?"left:50%;width:"+half+"%":"right:50%;width:"+half+"%";
     return '<div class="brow"><span class="bk" style="color:'+getColor(f)+'">'+f+'</span>'+
-      '<div class="btrack center"><i style="'+st+';background:'+getColor(f)+'"></i></div><span class="bv">'+(v>0?"+":"")+v+'</span></div>';
-  }).join("");
+      '<div class="btrack center"><i style="'+st+';background:'+getColor(f)+'"></i></div><span class="bv">'+(v>0?"+":"")+v+'</span></div>'; }).join("");
   return '<div class="card chart hi"><h4>'+title+'</h4><div class="csub">'+sub+'</div><div class="brows">'+rows+'</div></div>';
+}
+function qblock(primary,secondary){
+  if(!primary||!QPERGUNTAS[primary]) return "";
+  const qs=QPERGUNTAS[primary].slice();
+  if(secondary&&QPERGUNTAS[secondary]) qs.push(QPERGUNTAS[secondary][0]);
+  return '<div class="qbox"><div class="qh">Perguntas sugeridas para a entrevista</div><ol>'+qs.map(q=>"<li>"+esc(q)+"</li>").join("")+'</ol></div>';
 }
 
 /* ---------- excluir ---------- */
@@ -381,7 +533,7 @@ $("csv").addEventListener("click",()=>{
   const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
   const a=document.createElement("a"); a.href=url; a.download="respostas-disc.csv"; a.click(); URL.revokeObjectURL(url);
 });
-function g(o,k){ return o&&o[k]!=null?o[k]:""; }
+function g(o,k){ return o&&o[k]!=null?o[k]:0; }
 function csvCell(v){ v=(v==null?"":String(v)); return /[",\n;]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v; }
 
 /* ---------- utils ---------- */
