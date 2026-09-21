@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Pesquisa de comportamento DISC para entrevistas — Ativa Security.">
+<style>
+  html{-webkit-text-size-adjust:100%}
+  :root{padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+<title>Perfil DISC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* ===== BLUETECH — light base (contract requires light on bare :root) ===== */
+:root{
+  color-scheme:light;
+  --bg:#eaf0f9; --bg-soft:#e3ebf6;
+  --surface:#ffffff; --surface-2:#f2f6fc; --surface-3:#e6edf8;
+  --ink:#0b1a31; --ink-2:#3f5170; --ink-3:#7688a5;
+  --line:#dbe4f1; --line-2:#c6d3e7;
+  --accent:#2563eb; --accent-2:#0ea5e9;
+  --glow:rgba(37,99,235,.08);
+  --grid:rgba(37,99,235,.05);
+  --card-top:rgba(255,255,255,.7);
+  --d:#4f46e5; --d-soft:#e7e6fb;
+  --i:#2f6fe0; --i-soft:#e2ecfb;
+  --s:#0a86cf; --s-soft:#daeefb;
+  --c:#0a9aac; --c-soft:#d9f2f4;
+  --shadow:0 1px 2px rgba(11,26,49,.05),0 14px 34px rgba(11,26,49,.09);
+  --shadow-accent:0 12px 30px rgba(37,99,235,.28);
+  --radius:16px;
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme:dark){
+    color-scheme:dark;
+    --bg:#050912; --bg-soft:#0a1121;
+    --surface:#0d1626; --surface-2:#111e35; --surface-3:#182741;
+    --ink:#e9f1ff; --ink-2:#a4b6d6; --ink-3:#66789b;
+    --line:#1b2b46; --line-2:#283c5e;
+    --accent:#4b8dff; --accent-2:#38d6f0;
+    --glow:rgba(56,189,248,.14); --grid:rgba(90,150,255,.05);
+    --card-top:rgba(255,255,255,.05);
+    --d:#8b93ff; --d-soft:#191d38;
+    --i:#5a9dff; --i-soft:#131f38;
+    --s:#26aef0; --s-soft:#0b2236;
+    --c:#2fe3d6; --c-soft:#0a2a2a;
+    --shadow:0 1px 2px rgba(0,0,0,.45),0 18px 44px rgba(0,0,0,.55);
+    --shadow-accent:0 14px 36px rgba(75,141,255,.42);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#050912; --bg-soft:#0a1121;
+  --surface:#0d1626; --surface-2:#111e35; --surface-3:#182741;
+  --ink:#e9f1ff; --ink-2:#a4b6d6; --ink-3:#66789b;
+  --line:#1b2b46; --line-2:#283c5e;
+  --accent:#4b8dff; --accent-2:#38d6f0;
+  --glow:rgba(56,189,248,.14); --grid:rgba(90,150,255,.05);
+  --card-top:rgba(255,255,255,.05);
+  --d:#8b93ff; --d-soft:#191d38;
+  --i:#5a9dff; --i-soft:#131f38;
+  --s:#26aef0; --s-soft:#0b2236;
+  --c:#2fe3d6; --c-soft:#0a2a2a;
+  --shadow:0 1px 2px rgba(0,0,0,.45),0 18px 44px rgba(0,0,0,.55);
+  --shadow-accent:0 14px 36px rgba(75,141,255,.42);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  line-height:1.55;-webkit-font-smoothing:antialiased;
+  background:
+    radial-gradient(1100px 540px at 50% -220px,var(--glow),transparent 68%),
+    linear-gradient(var(--grid) 1px,transparent 1px) 0 0/100% 46px,
+    var(--bg);
+  background-repeat:no-repeat,repeat-y,no-repeat;
+}
+.wrap{max-width:840px;margin:0 auto;padding-block:0;padding-left:16px;padding-right:16px;position:relative;z-index:1}
+h1,h2,h3,h4{font-family:"Sora",system-ui,sans-serif;margin:0;text-wrap:balance;letter-spacing:-.015em}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+button{font-family:inherit;cursor:pointer}
+input{font-family:inherit}
+a{color:var(--accent)}
+section[hidden]{display:none!important}
+
+/* top bar */
+.topbar{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:20;
+  background:color-mix(in srgb,var(--bg) 78%,transparent);
+  backdrop-filter:saturate(1.5) blur(14px);-webkit-backdrop-filter:saturate(1.5) blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.topbar .row{max-width:840px;margin:0 auto;padding:11px 16px;display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-family:"Sora";font-weight:700;font-size:15.5px;letter-spacing:.005em}
+.mark{width:30px;height:30px;border-radius:9px;display:grid;grid-template-columns:1fr 1fr;gap:2.5px;padding:5px;background:linear-gradient(140deg,var(--accent),var(--accent-2));box-shadow:var(--shadow-accent)}
+.mark i{border-radius:2px;background:rgba(255,255,255,.92)}
+.mark i:nth-child(2){background:rgba(255,255,255,.6)}
+.mark i:nth-child(3){background:rgba(255,255,255,.6)}
+.spacer{flex:1}
+.ghost{
+  border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2);
+  border-radius:10px;padding:7px 12px;font-size:13px;font-weight:600;display:inline-flex;gap:6px;align-items:center;transition:.15s
+}
+.ghost:hover{color:var(--ink);border-color:var(--accent)}
+
+/* generic */
+.card{
+  background:linear-gradient(180deg,var(--card-top),transparent 120px),var(--surface);
+  border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);position:relative
+}
+.eyebrow{font-family:"IBM Plex Mono";font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.muted{color:var(--ink-2)}.tiny{font-size:12.5px}
+
+/* intro */
+#screen-intro{padding-top:40px;padding-bottom:60px}
+.hero .eyebrow{color:var(--accent);display:inline-flex;align-items:center;gap:9px}
+.hero .eyebrow::before{content:"";width:26px;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+.hero h1{font-size:clamp(31px,7vw,47px);font-weight:800;line-height:1.03;margin-top:16px;
+  background:linear-gradient(180deg,var(--ink),color-mix(in srgb,var(--ink) 62%,var(--accent)));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{color:var(--ink-2);font-size:16.5px;max-width:60ch;margin:16px 0 0}
+.hero p.lead b{color:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}
+.chip{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:7px 14px 7px 8px;font-size:13px;font-weight:600;box-shadow:var(--shadow)}
+.chip b{width:22px;height:22px;border-radius:7px;display:grid;place-items:center;color:#fff;font-family:"Sora";font-size:12px;font-weight:800}
+.chip.d b{background:var(--d);box-shadow:0 3px 10px color-mix(in srgb,var(--d) 40%,transparent)}
+.chip.i b{background:var(--i);box-shadow:0 3px 10px color-mix(in srgb,var(--i) 40%,transparent)}
+.chip.s b{background:var(--s);box-shadow:0 3px 10px color-mix(in srgb,var(--s) 40%,transparent)}
+.chip.c b{background:var(--c);box-shadow:0 3px 10px color-mix(in srgb,var(--c) 40%,transparent)}
+
+.form-card{margin-top:30px;padding:24px}
+.form-card h2{font-size:18px;font-weight:700}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:12px;font-weight:600;color:var(--ink-2);letter-spacing:.01em}
+.field input{
+  border:1px solid var(--line-2);background:var(--surface-2);color:var(--ink);
+  border-radius:11px;padding:11px 13px;font-size:14.5px;transition:border-color .15s,box-shadow .15s
+}
+.field input::placeholder{color:var(--ink-3)}
+.field input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 24%,transparent)}
+.howto{margin-top:22px;background:var(--surface-2);border:1px solid var(--line);border-radius:13px;padding:17px 19px}
+.howto ol{margin:11px 0 0;padding-left:20px;color:var(--ink-2);font-size:14px}
+.howto ol li{margin:6px 0}
+.howto b{color:var(--ink)}
+.cta{
+  border:none;color:#fff;border-radius:12px;padding:14px 24px;font-size:15px;font-weight:700;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:var(--shadow-accent);
+  display:inline-flex;align-items:center;gap:9px;transition:transform .08s,filter .15s
+}
+.cta:hover{filter:brightness(1.07)}.cta:active{transform:translateY(1px)}
+.cta:disabled{opacity:.4;cursor:not-allowed;filter:none;box-shadow:none}
+.actions{margin-top:24px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.note{margin-top:32px;font-size:12.5px;color:var(--ink-3);max-width:72ch;border-left:2px solid var(--accent);padding-left:13px}
+.note b{color:var(--ink-2)}
+
+/* quiz */
+#screen-quiz{padding-top:26px;padding-bottom:64px}
+.progress-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:11px}
+.progress-head .step{font-family:"IBM Plex Mono";font-size:13px;color:var(--ink-2);font-weight:600}
+.progress-head .step b{color:var(--accent)}
+.bar{height:8px;border-radius:99px;background:var(--surface-3);overflow:hidden;border:1px solid var(--line)}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:99px;transition:width .35s ease;box-shadow:0 0 12px color-mix(in srgb,var(--accent-2) 60%,transparent)}
+.block-card{margin-top:20px;padding:22px 22px 10px}
+.block-card .q{font-size:15px;font-weight:600;color:var(--ink)}
+.block-card .q b{color:var(--accent)}
+.block-card .q span{color:var(--ink-2);font-weight:400}
+.opt-head{display:grid;grid-template-columns:1fr 62px 62px;gap:10px;margin-top:18px;padding:0 4px 8px}
+.opt-head span{font-family:"IBM Plex Mono";font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;text-align:center;color:var(--ink-3)}
+.opt-head span:first-child{text-align:left}
+.opt-head .hm{color:var(--accent)}
+.opt{display:grid;grid-template-columns:1fr 62px 62px;gap:10px;align-items:center;padding:10px 4px;border-top:1px solid var(--line)}
+.opt .w{font-size:15.5px;font-weight:500}
+.pick{
+  width:46px;height:36px;margin:0 auto;border-radius:10px;border:1.5px solid var(--line-2);
+  background:var(--surface-2);color:var(--ink-3);font-family:"Sora";font-weight:800;font-size:16px;
+  display:grid;place-items:center;transition:all .13s
+}
+.pick:hover{border-color:var(--accent);color:var(--ink)}
+.pick.more.on{background:linear-gradient(135deg,var(--accent),var(--accent-2));border-color:transparent;color:#fff;box-shadow:0 5px 16px color-mix(in srgb,var(--accent) 45%,transparent)}
+.pick.less.on{background:color-mix(in srgb,var(--ink-3) 24%,var(--surface));border-color:var(--ink-3);color:var(--ink)}
+.quiz-nav{margin-top:22px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.dotsnav{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:20px;max-width:540px;margin-left:auto;margin-right:auto}
+.dotsnav button{width:23px;height:23px;border-radius:7px;border:1px solid var(--line-2);background:var(--surface);font-size:10px;color:var(--ink-3);font-family:"IBM Plex Mono";padding:0;transition:.12s}
+.dotsnav button.done{background:color-mix(in srgb,var(--accent) 16%,var(--surface));color:var(--accent);border-color:color-mix(in srgb,var(--accent) 40%,var(--line-2))}
+.dotsnav button.cur{border-color:var(--accent);color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent-2));font-weight:700}
+
+/* result */
+#screen-result{padding-top:26px;padding-bottom:64px}
+.res-head{padding:24px;display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+.res-head .who{flex:1;min-width:200px}
+.res-head .who h2{font-size:23px;font-weight:800}
+.res-head .who .meta{color:var(--ink-2);font-size:13.5px;margin-top:6px;display:flex;flex-wrap:wrap;gap:4px 16px}
+.res-head .who .meta b{color:var(--ink)}
+.badge-primary{border-radius:14px;padding:15px 17px;min-width:156px;color:#fff;display:flex;flex-direction:column;gap:2px}
+.badge-primary .lbl{font-family:"IBM Plex Mono";font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;opacity:.92}
+.badge-primary .let{font-family:"Sora";font-size:38px;font-weight:800;line-height:1}
+.badge-primary .nm{font-weight:700;font-size:15px}
+
+.section-title{margin:34px 4px 0;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.section-title h3{font-size:16.5px;font-weight:700}
+.section-title .hint{font-size:12.5px;color:var(--ink-3)}
+
+.charts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:15px}
+.chart{padding:16px 16px 14px}
+.chart h4{font-size:13px;font-weight:700}
+.chart .sub{font-size:11px;color:var(--ink-3);margin-top:2px;min-height:28px;line-height:1.35}
+.chart.hi{border-color:color-mix(in srgb,var(--accent) 55%,var(--line));box-shadow:var(--shadow),0 0 0 1px color-mix(in srgb,var(--accent) 40%,transparent)}
+.chart.hi h4{color:var(--accent)}
+.rows{margin-top:13px;display:flex;flex-direction:column;gap:10px}
+.brow{display:grid;grid-template-columns:16px 1fr 28px;gap:8px;align-items:center}
+.brow .k{font-family:"Sora";font-weight:800;font-size:13px}
+.brow .track{position:relative;height:22px;background:var(--surface-3);border-radius:7px;overflow:hidden;border:1px solid var(--line)}
+.brow .track>i{position:absolute;top:0;bottom:0;border-radius:6px;transition:width .4s ease}
+.brow .track.center::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--line-2)}
+.brow .v{font-family:"IBM Plex Mono";font-size:12.5px;font-weight:600;text-align:right;color:var(--ink-2)}
+
+.interp{margin-top:15px;display:flex;flex-direction:column;gap:13px}
+.pcard{padding:19px;border-left:4px solid var(--line)}
+.pcard.d{border-left-color:var(--d)}.pcard.i{border-left-color:var(--i)}
+.pcard.s{border-left-color:var(--s)}.pcard.c{border-left-color:var(--c)}
+.pcard .ph{display:flex;align-items:center;gap:11px}
+.pcard .ph .sq{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;color:#fff;font-family:"Sora";font-weight:800}
+.pcard.d .sq{background:var(--d)}.pcard.i .sq{background:var(--i)}.pcard.s .sq{background:var(--s)}.pcard.c .sq{background:var(--c)}
+.pcard .ph h4{font-size:16px;font-weight:700}
+.pcard .ph .tag{margin-left:auto;font-size:10.5px;font-family:"IBM Plex Mono";text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);border:1px solid var(--line-2);border-radius:99px;padding:4px 10px}
+.pcard p{margin:12px 0 0;font-size:14px;color:var(--ink-2)}
+.pcard p b{color:var(--ink)}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:13px}
+.twocol .h{font-size:11px;font-weight:700;font-family:"IBM Plex Mono";text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);margin-bottom:6px}
+.twocol ul{margin:0;padding-left:16px;font-size:13.5px;color:var(--ink-2)}
+.twocol ul li{margin:4px 0}
+.qbox{margin-top:15px;background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 7%,var(--surface)),var(--surface));border:1px solid color-mix(in srgb,var(--accent) 26%,var(--line));border-radius:13px;padding:17px 19px}
+.qbox .h{font-size:11.5px;font-weight:700;font-family:"IBM Plex Mono";text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.qbox ol{margin:10px 0 0;padding-left:18px;font-size:14px;color:var(--ink)}
+.qbox ol li{margin:7px 0}
+
+table.summary{width:100%;border-collapse:collapse;margin-top:15px;font-size:13.5px}
+table.summary th,table.summary td{text-align:left;padding:10px 11px;border-bottom:1px solid var(--line)}
+table.summary th{font-family:"IBM Plex Mono";font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+table.summary td.num{font-family:"IBM Plex Mono";text-align:center;font-variant-numeric:tabular-nums}
+table.summary .fk{font-family:"Sora";font-weight:800;display:inline-grid;place-items:center;width:23px;height:23px;border-radius:7px;color:#fff;font-size:12px}
+.summary .d .fk{background:var(--d)}.summary .i .fk{background:var(--i)}.summary .s .fk{background:var(--s)}.summary .c .fk{background:var(--c)}
+
+.res-actions{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:11px 19px;border-radius:99px;font-size:13.5px;font-weight:600;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:60}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(-4px)}
+
+@media (max-width:620px){
+  .grid2,.charts,.twocol{grid-template-columns:1fr}
+  .opt-head,.opt{grid-template-columns:1fr 52px 52px}
+  .pick{width:44px}
+}
+@media print{
+  .topbar,.res-actions,.note{display:none!important}
+  body{background:#fff;color:#000}
+  .card{box-shadow:none;border-color:#ccc;background:#fff}
+  .charts{grid-template-columns:1fr 1fr 1fr}
+  #screen-intro,#screen-quiz{display:none!important}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="row">
+    <div class="brand"><span class="mark"><i></i><i></i><i></i><i></i></span> Perfil DISC</div>
+    <div class="spacer"></div>
+    <button class="ghost" id="btn-restart" hidden onclick="restart()">↺ Nova avaliação</button>
+    <button class="ghost" id="btn-theme" onclick="toggleTheme()" aria-label="Alternar tema">◐ Tema</button>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section id="screen-intro">
+  <div class="wrap">
+    <div class="hero">
+      <div class="eyebrow">Pesquisa de comportamento · Ativa Security</div>
+      <h1>Mapa comportamental DISC para entrevistas</h1>
+      <p class="lead">Uma avaliação rápida de estilo comportamental. Em cada grupo, a pessoa escolhe a palavra que <b>mais</b> e a que <b>menos</b> a representa. Ao final, o sistema calcula o perfil nos quatro fatores e sugere pontos de observação e perguntas para a entrevista.</p>
+      <div class="legend">
+        <span class="chip d"><b>D</b> Dominância</span>
+        <span class="chip i"><b>I</b> Influência</span>
+        <span class="chip s"><b>S</b> Estabilidade</span>
+        <span class="chip c"><b>C</b> Conformidade</span>
+      </div>
+    </div>
+
+    <div class="card form-card">
+      <h2>Dados do candidato</h2>
+      <div class="grid2">
+        <div class="field"><label for="f-nome">Nome</label><input id="f-nome" placeholder="Nome completo" autocomplete="off"></div>
+        <div class="field"><label for="f-cargo">Cargo / vaga</label><input id="f-cargo" placeholder="Ex.: Analista de SOC" autocomplete="off"></div>
+        <div class="field"><label for="f-entrevistador">Entrevistador</label><input id="f-entrevistador" placeholder="Opcional" autocomplete="off"></div>
+        <div class="field"><label for="f-data">Data</label><input id="f-data" type="date"></div>
+      </div>
+
+      <div class="howto">
+        <div class="eyebrow">Como responder</div>
+        <ol>
+          <li>São 24 grupos de 4 palavras.</li>
+          <li>Em cada grupo, marque <b>+</b> na palavra que <b>MAIS</b> combina e <b>−</b> na que <b>MENOS</b> combina.</li>
+          <li>Responda por instinto, pensando em como você realmente é — não há resposta certa ou errada.</li>
+        </ol>
+      </div>
+
+      <div class="actions">
+        <button class="cta" onclick="start()">Iniciar avaliação →</button>
+        <span class="tiny muted">Leva cerca de 5–8 minutos.</span>
+      </div>
+    </div>
+
+    <p class="note">O DISC descreve <b>estilo de comportamento</b>, não capacidade, inteligência ou valor da pessoa. Use como apoio ao diálogo e à observação na entrevista, nunca como critério único de contratação. Não existe perfil “bom” ou “ruim” — cada estilo tem forças e pontos de atenção.</p>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="screen-quiz" hidden>
+  <div class="wrap">
+    <div class="progress-head">
+      <span class="step">Grupo <b id="q-cur">1</b> de 24</span>
+      <span class="tiny muted" id="q-name"></span>
+    </div>
+    <div class="bar"><i id="q-fill" style="width:4%"></i></div>
+
+    <div class="card block-card">
+      <div class="q">Escolha a que <b>mais</b> e a que <b>menos</b> combinam com você <span>— uma de cada.</span></div>
+      <div class="opt-head"><span>Palavra</span><span class="hm">+ Mais</span><span>− Menos</span></div>
+      <div id="opts"></div>
+    </div>
+
+    <div class="quiz-nav">
+      <button class="ghost" id="btn-prev" onclick="prev()">← Voltar</button>
+      <button class="cta" id="btn-next" onclick="next()" disabled>Próximo →</button>
+    </div>
+    <div class="dotsnav" id="dotsnav"></div>
+  </div>
+</section>
+
+<!-- RESULT -->
+<section id="screen-result" hidden>
+  <div class="wrap">
+    <div class="eyebrow" style="margin-bottom:13px">Resultado da avaliação</div>
+    <div class="card res-head">
+      <div class="who">
+        <h2 id="r-nome">—</h2>
+        <div class="meta" id="r-meta"></div>
+      </div>
+      <div class="badge-primary" id="r-badge">
+        <span class="lbl">Perfil predominante</span>
+        <span class="let" id="r-let">—</span>
+        <span class="nm" id="r-nm">—</span>
+      </div>
+    </div>
+
+    <div class="section-title"><h3>Leitura dos três gráficos</h3><span class="hint">a mesma pessoa vista de três ângulos</span></div>
+    <div class="charts">
+      <div class="card chart"><h4>Natural</h4><div class="sub">Como tende a agir de forma instintiva (respostas “menos”, invertidas).</div><div class="rows" id="c-nat"></div></div>
+      <div class="card chart"><h4>Adaptado</h4><div class="sub">O comportamento que mostra ao ambiente (respostas “mais”).</div><div class="rows" id="c-ada"></div></div>
+      <div class="card chart hi"><h4>Observável</h4><div class="sub">A síntese percebida no dia a dia — foco principal da leitura.</div><div class="rows" id="c-obs"></div></div>
+    </div>
+
+    <div class="section-title"><h3>Perfil em detalhe</h3><span class="hint">fatores mais marcantes primeiro</span></div>
+    <div class="interp" id="r-interp"></div>
+
+    <div class="section-title"><h3>Quadro-resumo</h3></div>
+    <table class="summary" id="r-table">
+      <thead><tr><th>Fator</th><th style="text-align:center">Natural</th><th style="text-align:center">Adaptado</th><th style="text-align:center">Observável</th><th style="text-align:center">Nível</th></tr></thead>
+      <tbody></tbody>
+    </table>
+
+    <div class="res-actions">
+      <button class="cta" onclick="window.print()">⎙ Imprimir / salvar PDF</button>
+      <button class="ghost" onclick="copySummary()">⧉ Copiar resumo</button>
+      <button class="ghost" onclick="restart()">↺ Nova avaliação</button>
+    </div>
+    <p class="note">Instrumento de apoio. O resultado reflete a autopercepção da pessoa no momento da resposta e deve ser combinado com a entrevista, referências e avaliação técnica.</p>
+  </div>
+</section>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const WORDS = {
+  D:["Decidido","Direto","Competitivo","Ousado","Determinado","Assertivo","Objetivo","Corajoso","Firme","Exigente","Enérgico","Autoconfiante","Independente","Focado","Persistente","Audacioso","Franco","Combativo","Pioneiro","Aventureiro","Dominante","Vigoroso","Ambicioso","Resoluto"],
+  I:["Comunicativo","Entusiasta","Otimista","Sociável","Persuasivo","Expressivo","Animado","Extrovertido","Carismático","Falante","Inspirador","Espontâneo","Divertido","Caloroso","Convincente","Popular","Empolgado","Envolvente","Brincalhão","Simpático","Aberto","Influente","Expansivo","Sorridente"],
+  S:["Paciente","Calmo","Leal","Constante","Colaborativo","Previsível","Tranquilo","Acolhedor","Cooperativo","Estável","Gentil","Ponderado","Prestativo","Compreensivo","Sereno","Amável","Dedicado","Harmonioso","Conciliador","Solidário","Fiel","Atencioso","Moderado","Equilibrado"],
+  C:["Analítico","Cuidadoso","Preciso","Organizado","Cauteloso","Detalhista","Sistemático","Perfeccionista","Lógico","Metódico","Disciplinado","Rigoroso","Criterioso","Prudente","Reservado","Exato","Meticuloso","Conservador","Racional","Formal","Correto","Planejador","Minucioso","Cético"]
+};
+const N = 24;
+const PERM = [
+ ["D","I","S","C"],["C","S","I","D"],["I","D","C","S"],["S","C","D","I"],
+ ["D","S","C","I"],["I","C","S","D"],["C","D","I","S"],["S","I","D","C"],
+ ["I","S","D","C"],["D","C","I","S"],["S","D","C","I"],["C","I","S","D"],
+ ["D","I","C","S"],["S","C","I","D"],["I","D","S","C"],["C","S","D","I"],
+ ["S","I","C","D"],["D","S","I","C"],["C","D","S","I"],["I","C","D","S"],
+ ["D","C","S","I"],["I","S","C","D"],["S","D","I","C"],["C","I","D","S"]
+];
+const FNAME = {D:"Dominância",I:"Influência",S:"Estabilidade",C:"Conformidade"};
+
+let answers = Array.from({length:N},()=>({more:null,less:null}));
+let cur = 0;
+const $=id=>document.getElementById(id);
+
+function start(){
+  const nome=$("f-nome").value.trim();
+  if(!nome){ $("f-nome").focus(); toast("Informe o nome do candidato"); return; }
+  $("screen-intro").hidden=true; $("screen-quiz").hidden=false; $("btn-restart").hidden=false;
+  buildDots(); render(); window.scrollTo(0,0);
+}
+function render(){
+  $("q-cur").textContent=cur+1;
+  $("q-fill").style.width=(((cur+1)/N)*100)+"%";
+  const box=$("opts"); box.innerHTML="";
+  const a=answers[cur];
+  PERM[cur].forEach(f=>{
+    const word=WORDS[f][cur];
+    const row=document.createElement("div"); row.className="opt";
+    row.innerHTML='<div class="w">'+word+'</div>'+
+      '<button class="pick more'+(a.more===f?" on":"")+'" aria-label="Mais: '+word+'">+</button>'+
+      '<button class="pick less'+(a.less===f?" on":"")+'" aria-label="Menos: '+word+'">−</button>';
+    row.querySelector(".more").onclick=()=>choose("more",f);
+    row.querySelector(".less").onclick=()=>choose("less",f);
+    box.appendChild(row);
+  });
+  $("btn-prev").disabled = cur===0;
+  const done = answers[cur].more && answers[cur].less;
+  const nb=$("btn-next"); nb.disabled=!done;
+  nb.textContent = cur===N-1 ? "Ver resultado ✓" : "Próximo →";
+  syncDots();
+}
+function choose(kind,f){
+  const a=answers[cur];
+  if(kind==="more"){ if(a.less===f)a.less=null; a.more=(a.more===f?null:f); }
+  else{ if(a.more===f)a.more=null; a.less=(a.less===f?null:f); }
+  render();
+  if(a.more&&a.less&&cur<N-1){ setTimeout(()=>{ if(answers[cur].more&&answers[cur].less) next(); },240); }
+}
+function next(){
+  const a=answers[cur];
+  if(!(a.more&&a.less)){ toast("Marque uma palavra + e uma −"); return; }
+  if(cur<N-1){ cur++; render(); window.scrollTo({top:0,behavior:"smooth"}); } else finish();
+}
+function prev(){ if(cur>0){ cur--; render(); window.scrollTo({top:0,behavior:"smooth"}); } }
+function buildDots(){
+  const d=$("dotsnav"); d.innerHTML="";
+  for(let i=0;i<N;i++){ const b=document.createElement("button"); b.textContent=i+1;
+    b.onclick=()=>{cur=i;render();window.scrollTo({top:0,behavior:"smooth"});}; d.appendChild(b); }
+}
+function syncDots(){
+  [...$("dotsnav").children].forEach((b,i)=>{ b.className="";
+    if(answers[i].more&&answers[i].less)b.classList.add("done"); if(i===cur)b.classList.add("cur"); });
+}
+
+function compute(){
+  const more={D:0,I:0,S:0,C:0}, less={D:0,I:0,S:0,C:0};
+  answers.forEach(a=>{ if(a.more)more[a.more]++; if(a.less)less[a.less]++; });
+  const nat={}, ada={}, obs={}; const maxLess=Math.max(...Object.values(less));
+  ["D","I","S","C"].forEach(f=>{ ada[f]=more[f]; nat[f]=maxLess-less[f]; obs[f]=more[f]-less[f]; });
+  return {more,less,nat,ada,obs};
+}
+function levelOf(v){
+  if(v>=6)return"Muito alto"; if(v>=3)return"Alto"; if(v>=1)return"Moderado";
+  if(v<=-6)return"Muito baixo"; if(v<=-3)return"Baixo"; if(v<=-1)return"Reduzido"; return"Equilibrado";
+}
+
+const PROFILE={
+ D:{resumo:"Orientação a resultados, ação e desafio. Gosta de assumir o controle, decidir com rapidez e superar obstáculos. Comunicação direta e foco no objetivo.",
+    forcas:["Toma decisões e assume responsabilidade","Ritmo rápido, foco em metas","Enfrenta problemas de frente","Não trava diante da pressão"],
+    atencao:["Pode parecer impaciente ou ríspido","Tende a atropelar processos e detalhes","Escuta menos quando está sob pressão","Delega pouco por querer controle"],
+    entrevista:"Observe como lida com autonomia, metas e conflito. Costuma responder de forma objetiva e valorizar resultados concretos.",
+    perguntas:["Conte uma situação em que você teve que decidir rápido com informação incompleta.","Como você reage quando um projeto sai do seu controle?","Descreva um objetivo ambicioso que você buscou e o que fez para alcançá-lo."]},
+ I:{resumo:"Orientação a pessoas e comunicação. Entusiasta, persuasivo e sociável; motiva o time e cria conexões com facilidade. Ambientes colaborativos e reconhecimento o energizam.",
+    forcas:["Comunica e influencia com naturalidade","Cria bom clima e engaja pessoas","Otimista e aberto a novidades","Boa desenvoltura em rede e vendas"],
+    atencao:["Pode dispersar-se em detalhes e prazos","Excesso de otimismo nas estimativas","Precisa de reconhecimento para manter energia","Dificuldade com tarefas solitárias e rotineiras"],
+    entrevista:"Observe a energia, a fluência e como fala de trabalho em equipe. Traga perguntas que exijam foco em execução e dados, não só relações.",
+    perguntas:["Como você conquistou a confiança de um cliente ou colega difícil?","Conte um projeto em que precisou de disciplina e acompanhamento de detalhes.","Como você mantém o ritmo quando o trabalho é repetitivo?"]},
+ S:{resumo:"Orientação à estabilidade e cooperação. Paciente, leal e constante; valoriza harmonia, previsibilidade e trabalho em equipe. É o apoio confiável do grupo.",
+    forcas:["Confiável e consistente ao longo do tempo","Ótimo em colaboração e suporte","Ouve com paciência e mantém a calma","Sustenta rotinas e processos com regularidade"],
+    atencao:["Resistência a mudanças bruscas","Evita conflito, pode segurar opiniões","Dificuldade em dizer não e priorizar","Ritmo mais cauteloso sob pressão de tempo"],
+    entrevista:"Observe como reage a mudança e conflito. Dê espaço e tempo — tende a ser mais reservado no início e a valorizar segurança e relacionamento.",
+    perguntas:["Conte uma mudança grande no trabalho e como você se adaptou.","Como você age quando discorda da decisão do grupo?","Descreva como você apoia um colega em dificuldade."]},
+ C:{resumo:"Orientação a qualidade, análise e procedimentos. Preciso, cauteloso e metódico; busca fazer certo, segue padrões e fundamenta decisões em dados. Preza consistência técnica.",
+    forcas:["Alto padrão de qualidade e precisão","Analisa riscos e detalhes antes de agir","Segue normas, processos e documentação","Decisões fundamentadas em fatos"],
+    atencao:["Pode ser perfeccionista e lento para decidir","Excesso de crítica e cautela","Desconforto com ambiguidade e improviso","Mais reservado nas relações"],
+    entrevista:"Observe a profundidade técnica e o cuidado com detalhes. Valoriza clareza de critérios; perguntas abertas demais podem gerar respostas hesitantes.",
+    perguntas:["Descreva um processo que você melhorou para reduzir erros.","Como você decide quando já tem análise suficiente para agir?","Conte uma vez em que teve que trabalhar com regras ou requisitos rígidos."]}
+};
+
+function barColor(f){return {D:"var(--d)",I:"var(--i)",S:"var(--s)",C:"var(--c)"}[f];}
+function drawSimple(elId,data){
+  const el=$(elId); el.innerHTML="";
+  const max=Math.max(1,...Object.values(data));
+  ["D","I","S","C"].forEach(f=>{
+    const v=data[f], w=Math.round((v/max)*100);
+    const row=document.createElement("div"); row.className="brow";
+    row.innerHTML='<span class="k" style="color:'+barColor(f)+'">'+f+'</span>'+
+      '<div class="track"><i style="left:0;width:'+w+'%;background:'+barColor(f)+'"></i></div>'+
+      '<span class="v">'+v+'</span>';
+    el.appendChild(row);
+  });
+}
+function drawCentered(elId,data){
+  const el=$(elId); el.innerHTML="";
+  const max=Math.max(3,...Object.values(data).map(Math.abs));
+  ["D","I","S","C"].forEach(f=>{
+    const v=data[f]; const half=(Math.abs(v)/max)*50;
+    let style = v>=0 ? "left:50%;width:"+half+"%" : "right:50%;width:"+half+"%";
+    const row=document.createElement("div"); row.className="brow";
+    row.innerHTML='<span class="k" style="color:'+barColor(f)+'">'+f+'</span>'+
+      '<div class="track center"><i style="'+style+';background:'+barColor(f)+'"></i></div>'+
+      '<span class="v">'+(v>0?"+":"")+v+'</span>';
+    el.appendChild(row);
+  });
+}
+
+let last=null;
+function finish(){
+  const r=compute(); last=r;
+  $("screen-quiz").hidden=true; $("screen-result").hidden=false; window.scrollTo(0,0);
+  const nome=$("f-nome").value.trim()||"Candidato";
+  const cargo=$("f-cargo").value.trim(), ent=$("f-entrevistador").value.trim(), data=$("f-data").value;
+  $("r-nome").textContent=nome;
+  const meta=[]; if(cargo)meta.push("<span><b>Vaga:</b> "+esc(cargo)+"</span>");
+  if(ent)meta.push("<span><b>Entrevistador:</b> "+esc(ent)+"</span>");
+  if(data)meta.push("<span><b>Data:</b> "+fmtDate(data)+"</span>");
+  $("r-meta").innerHTML=meta.join("");
+
+  const order=["D","I","S","C"].sort((a,b)=>r.obs[b]-r.obs[a]);
+  const primary=order[0], secondary=order[1];
+  const pc=getColor(primary);
+  $("r-badge").style.background="linear-gradient(140deg,"+pc+",color-mix(in srgb,"+pc+" 60%,#0a1020))";
+  $("r-badge").style.boxShadow="0 12px 30px color-mix(in srgb,"+pc+" 40%,transparent)";
+  $("r-let").textContent=primary; $("r-nm").textContent=FNAME[primary];
+
+  drawSimple("c-nat",r.nat); drawSimple("c-ada",r.ada); drawCentered("c-obs",r.obs);
+
+  const interp=$("r-interp"); interp.innerHTML="";
+  order.forEach((f,idx)=>{
+    const p=PROFILE[f], lvl=levelOf(r.obs[f]);
+    const tag = idx===0?"Predominante":idx===1?"Secundário":"Nível: "+lvl;
+    const showFull = idx<2 || r.obs[f]>=1;
+    const card=document.createElement("div"); card.className="card pcard "+f.toLowerCase();
+    let html='<div class="ph"><span class="sq">'+f+'</span><h4>'+FNAME[f]+'</h4><span class="tag">'+tag+'</span></div><p>'+p.resumo+'</p>';
+    if(showFull){
+      html+='<div class="twocol"><div><div class="h">Forças</div><ul>'+p.forcas.map(x=>"<li>"+x+"</li>").join("")+'</ul></div>'+
+            '<div><div class="h">Pontos de atenção</div><ul>'+p.atencao.map(x=>"<li>"+x+"</li>").join("")+'</ul></div></div>'+
+            '<p><b>Na entrevista:</b> '+p.entrevista+'</p>';
+    }
+    card.innerHTML=html; interp.appendChild(card);
+  });
+  const qbox=document.createElement("div"); qbox.className="qbox";
+  const qs=[...PROFILE[primary].perguntas, PROFILE[secondary].perguntas[0]];
+  qbox.innerHTML='<div class="h">Perguntas sugeridas para esta entrevista</div><ol>'+qs.map(q=>"<li>"+q+"</li>").join("")+'</ol>';
+  interp.appendChild(qbox);
+
+  const tb=$("r-table").querySelector("tbody"); tb.innerHTML="";
+  ["D","I","S","C"].forEach(f=>{
+    const tr=document.createElement("tr"); tr.className=f.toLowerCase();
+    tr.innerHTML='<td><span class="fk">'+f+'</span> &nbsp;'+FNAME[f]+'</td>'+
+      '<td class="num">'+r.nat[f]+'</td><td class="num">'+r.ada[f]+'</td>'+
+      '<td class="num">'+(r.obs[f]>0?"+":"")+r.obs[f]+'</td><td class="num">'+levelOf(r.obs[f])+'</td>';
+    tb.appendChild(tr);
+  });
+}
+
+function restart(){
+  answers=Array.from({length:N},()=>({more:null,less:null})); cur=0; last=null;
+  ["f-nome","f-cargo","f-entrevistador"].forEach(id=>$(id).value=""); setToday();
+  $("screen-result").hidden=true; $("screen-quiz").hidden=true;
+  $("screen-intro").hidden=false; $("btn-restart").hidden=true; window.scrollTo(0,0);
+}
+
+function getColor(f){
+  const map={D:"--d",I:"--i",S:"--s",C:"--c"};
+  return getComputedStyle(document.documentElement).getPropertyValue(map[f]).trim()||"#4b8dff";
+}
+function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+function fmtDate(v){ const [y,m,d]=v.split("-"); return d+"/"+m+"/"+y; }
+function setToday(){ const t=new Date(); t.setMinutes(t.getMinutes()-t.getTimezoneOffset()); $("f-data").value=t.toISOString().slice(0,10); }
+function toast(msg){ const t=$("toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove("show"),1900); }
+function toggleTheme(){
+  const r=document.documentElement, c=r.getAttribute("data-theme");
+  const dark=c? c==="dark" : window.matchMedia("(prefers-color-scheme:dark)").matches;
+  r.setAttribute("data-theme", dark?"light":"dark");
+}
+function copySummary(){
+  if(!last)return;
+  const nome=$("f-nome").value.trim()||"Candidato", cargo=$("f-cargo").value.trim(), data=$("f-data").value;
+  const order=["D","I","S","C"].sort((a,b)=>last.obs[b]-last.obs[a]);
+  let txt="Perfil DISC — "+nome+(cargo?" ("+cargo+")":"")+(data?" — "+fmtDate(data):"")+"\n";
+  txt+="Predominante: "+order[0]+" ("+FNAME[order[0]]+") · Secundário: "+order[1]+" ("+FNAME[order[1]]+")\n\n";
+  txt+="Fator | Natural | Adaptado | Observável | Nível\n";
+  ["D","I","S","C"].forEach(f=>{ txt+=f+" ("+FNAME[f]+"): "+last.nat[f]+" | "+last.ada[f]+" | "+(last.obs[f]>0?"+":"")+last.obs[f]+" | "+levelOf(last.obs[f])+"\n"; });
+  (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject())
+    .then(()=>toast("Resumo copiado")).catch(()=>toast("Não foi possível copiar"));
+}
+
+setToday();
+</script>
+
+</body>
+</html>
